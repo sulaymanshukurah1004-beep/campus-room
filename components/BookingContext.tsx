@@ -6,7 +6,7 @@ import {
   useContext,
   useEffect,
   useState,
-  ReactNode,
+  type ReactNode,
 } from "react";
 
 export type Booking = {
@@ -14,65 +14,60 @@ export type Booking = {
   roomId: string;
   roomName: string;
   studentName: string;
-  purpose: string;
   date: string;
   timeSlot: string;
+  purpose: string;
 };
 
 type BookingContextType = {
   bookings: Booking[];
-  addBooking: (booking: Omit<Booking, "id">) => void;
-  cancelBooking: (id: string) => void;
   getBookedCount: (
     roomId: string,
     date: string,
     timeSlot: string
   ) => number;
+  addBooking: (
+    booking: Omit<Booking, "id">
+  ) => boolean;
+  cancelBooking: (id: string) => void;
 };
 
-const BookingContext = createContext<BookingContextType | undefined>(
-  undefined
-);
+const BookingContext = createContext<
+  BookingContextType | undefined
+>(undefined);
 
-export function BookingProvider({ children }: { children: ReactNode }) {
+export function BookingProvider({
+  children,
+}: {
+  children: ReactNode;
+}) {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [loaded, setLoaded] = useState(false);
 
-  // Load saved bookings from localStorage
+  // Load bookings from localStorage
   useEffect(() => {
-    const savedBookings = localStorage.getItem("campus-bookings");
+    try {
+      const saved = localStorage.getItem("campusBookings");
 
-    if (savedBookings) {
-      setBookings(JSON.parse(savedBookings));
+      if (saved) {
+        setBookings(JSON.parse(saved));
+      }
+    } catch {
+      console.error("Could not load bookings");
     }
 
     setLoaded(true);
   }, []);
 
-  // Save bookings whenever they change
+  // Save bookings to localStorage
   useEffect(() => {
     if (loaded) {
-      localStorage.setItem("campus-bookings", JSON.stringify(bookings));
+      localStorage.setItem(
+        "campusBookings",
+        JSON.stringify(bookings)
+      );
     }
   }, [bookings, loaded]);
-
-  // Add a new booking
-  const addBooking = (booking: Omit<Booking, "id">) => {
-    setBookings((previous) => [
-      ...previous,
-      {
-        ...booking,
-        id: crypto.randomUUID(),
-      },
-    ]);
-  };
-
-  // Cancel a booking
-  const cancelBooking = (id: string) => {
-    setBookings((previous) =>
-      previous.filter((booking) => booking.id !== id)
-    );
-  };
 
   // Count bookings for a particular room, date and time
   const getBookedCount = (
@@ -88,13 +83,47 @@ export function BookingProvider({ children }: { children: ReactNode }) {
     ).length;
   };
 
+  // Add a booking (maximum 4 students per slot)
+  const addBooking = (
+    booking: Omit<Booking, "id">
+  ): boolean => {
+    const count = getBookedCount(
+      booking.roomId,
+      booking.date,
+      booking.timeSlot
+    );
+
+    if (count >= 4) {
+      return false;
+    }
+
+    const newBooking: Booking = {
+      ...booking,
+      id: crypto.randomUUID(),
+    };
+
+    setBookings((previous) => [
+      ...previous,
+      newBooking,
+    ]);
+
+    return true;
+  };
+
+  // Cancel a booking
+  const cancelBooking = (id: string) => {
+    setBookings((previous) =>
+      previous.filter((booking) => booking.id !== id)
+    );
+  };
+
   return (
     <BookingContext.Provider
       value={{
         bookings,
+        getBookedCount,
         addBooking,
         cancelBooking,
-        getBookedCount,
       }}
     >
       {children}
@@ -102,12 +131,14 @@ export function BookingProvider({ children }: { children: ReactNode }) {
   );
 }
 
-// Custom hook for using booking information
+// Custom hook
 export function useBookings() {
   const context = useContext(BookingContext);
 
   if (!context) {
-    throw new Error("useBookings must be used inside BookingProvider");
+    throw new Error(
+      "useBookings must be used inside BookingProvider"
+    );
   }
 
   return context;

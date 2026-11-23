@@ -1,17 +1,17 @@
 
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import { BookingProvider } from "@/components/BookingContext";
 import "./globals.css";
 
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "CampusRooms",
-  description: "Find, explore and book available campus rooms.",
+  description: "Book your perfect campus room.",
 };
 
 export default function RootLayout({
@@ -22,7 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
-        {children}
+        <BookingProvider>
+          {children}
+        </BookingProvider>
       </body>
     </html>
   );
