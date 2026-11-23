@@ -1,36 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CampusRooms 🎓
 
-## Getting Started
+CampusRooms is a web-based campus room booking application that allows students to explore available rooms, check available time slots, and make reservations easily.
 
-First, run the development server:
+The platform provides a simple and user-friendly way to manage campus room bookings.
+
+## ✨ Features
+
+- **Browse Rooms:** Explore different campus rooms and their details.
+- **Room Information:** View room names, buildings, capacities, and available amenities.
+- **Availability Checking:** Check available time slots before making a reservation.
+- **Room Booking:** Select a preferred date and time slot to proceed with a booking.
+- **Booking Management:** View and cancel existing bookings.
+- **Booking Limits:** A maximum of four students can book the same room and time slot.
+- **Local Storage:** Booking information is saved in the browser using localStorage.
+- **Responsive Design:** Access the application on different screen sizes.
+
+## 🛠️ Technologies Used
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- JavaScript
+- Browser Local Storage
+
+## 📂 Project Structure
+
+```text
+CampusRooms/
+├── app/
+│   ├── booking/
+│   ├── rooms/
+│   │   └── [id]/
+│   ├── layout.tsx
+│   ├── page.tsx
+│   └── globals.css
+├── components/
+│   ├── BookingContext.tsx
+│   └── RoomCard.tsx
+├── data/
+│   └── data.js
+├── public/
+├── package.json
+└── README.md
+```
+
+## 🚀 Getting Started
+
+Follow these steps to run the project on your computer.
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/sulaymanshukurah1004-beep/campus-room.git
+```
+
+### 2. Navigate into the project folder
+
+```bash
+cd CampusRooms
+```
+
+### 3. Install dependencies
+
+```bash
+npm install
+```
+
+### 4. Start the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 5. Open the application
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Visit:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```text
+http://localhost:3000
+```
 
-## Learn More
+## 📖 How to Use
 
-To learn more about Next.js, take a look at the following resources:
+1. Open the CampusRooms application.
+2. Browse the available campus rooms.
+3. Select a room to view its details.
+4. Choose your preferred booking date.
+5. Select an available time slot.
+6. Proceed to the booking page to complete your reservation.
+7. Manage or cancel your bookings when necessary.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 💾 Data Storage
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This project uses browser localStorage to store booking information.
 
-## Deploy on Vercel
+This means booking records are saved in the browser on the device being used. The current version does not use a central database.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🔮 Future Improvements
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- User authentication and student accounts.
+- Database integration.
+- Email booking confirmations.
+- Administrator dashboard.
+- Improved booking management and notifications.
+
+## 👩‍💻 Author
+
+Developed as a student project to make campus room reservations easier and more organized.
+
+## 📄 License
+
+This project is created for educational purposes.
