@@ -6,7 +6,7 @@ export const rooms = [
     building: "Library",
     capacity: 20,
     amenities: ["Projector", "Wi-Fi", "Air Conditioning"],
-    image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72",
+    image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85",
     availableSlots: ["9:00 AM", "11:00 AM", "1:00 PM", "3:00 PM"],
   },
   {
@@ -15,7 +15,7 @@ export const rooms = [
     building: "Library",
     capacity: 8,
     amenities: ["Wi-Fi", "Whiteboard", "Power Outlets"],
-    image: "https://images.unsplash.com/photo-1524758631624-e2822e304c36",
+    image: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=85",
     availableSlots: ["10:00 AM", "12:00 PM", "2:00 PM", "4:00 PM"],
   },
   {
@@ -24,7 +24,7 @@ export const rooms = [
     building: "Science Block",
     capacity: 30,
     amenities: ["Computers", "Wi-Fi", "Projector"],
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=85",
     availableSlots: ["9:00 AM", "11:00 AM", "1:00 PM", "3:00 PM"],
   },
   {
@@ -33,7 +33,7 @@ export const rooms = [
     building: "Arts Block",
     capacity: 40,
     amenities: ["Projector", "Air Conditioning", "Whiteboard"],
-    image: "https://images.unsplash.com/photo-1509062522246-3755977927d7",
+    image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=85",
     availableSlots: ["8:00 AM", "10:00 AM", "12:00 PM", "2:00 PM"],
   },
   {
@@ -42,7 +42,7 @@ export const rooms = [
     building: "Technology Block",
     capacity: 15,
     amenities: ["Wi-Fi", "Computers", "Power Outlets"],
-    image: "https://images.unsplash.com/photo-1497366811353-6870744d04b2",
+    image: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=85",
     availableSlots: ["9:00 AM", "12:00 PM", "2:00 PM", "4:00 PM"],
   },
   {
@@ -51,7 +51,7 @@ export const rooms = [
     building: "Business Block",
     capacity: 25,
     amenities: ["Projector", "Wi-Fi", "Whiteboard"],
-    image: "https://images.unsplash.com/photo-1517502884422-41eaead166d4",
+    image: "https://images.unsplash.com/photo-1517502884422-41eaead166d4?auto=format&fit=crop&w=1200&q=85",
     availableSlots: ["10:00 AM", "12:00 PM", "2:00 PM", "4:00 PM"],
   },
 ];

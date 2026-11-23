@@ -1,12 +1,17 @@
 
 import type { Metadata } from "next";
+import { Poppins } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import { BookingProvider } from "@/components/BookingContext";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  title: "Campus Room Booking",
-  description: "Book campus rooms easily",
+  title: "CampusRooms",
+  description: "Find, explore and book available campus rooms.",
 };
 
 export default function RootLayout({
@@ -16,11 +21,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        <BookingProvider>
-          <Navbar />
-          {children}
-        </BookingProvider>
+      <body className={poppins.className}>
+        {children}
       </body>
     </html>
   );
