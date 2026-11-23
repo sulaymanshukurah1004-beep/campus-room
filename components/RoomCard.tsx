@@ -1,6 +1,7 @@
 
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useBookings } from "./BookingContext";
 
@@ -18,12 +19,19 @@ type RoomCardProps = {
 
 export default function RoomCard({ room }: RoomCardProps) {
   const { getBookedCount } = useBookings();
+  const [today, setToday] = useState("");
 
-  const today = new Date().toISOString().split("T")[0];
+  useEffect(() => {
+    setToday(
+      new Date().toLocaleDateString("en-CA")
+    );
+  }, []);
 
-  const isAvailable = room.availableSlots.some(
-    (slot) => getBookedCount(room.id, today, slot) < 4
-  );
+  const isAvailable = today
+    ? room.availableSlots.some(
+        (slot) => getBookedCount(room.id, today, slot) < 4
+      )
+    : true;
 
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
